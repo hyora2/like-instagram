@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Socialite;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Model\Contributions;
+use Auth;
 
 class GithubController extends Controller
 {
@@ -26,17 +28,36 @@ class GithubController extends Controller
             ]
         ]);
 
-        $app_user = DB::select('select * from public.user where github_id = ?', [$github_user->user['login']]);
+      //  $app_user = DB::select('select * from public.userdatas where github_id = ?', [$github_user->user['login']]);
+        //redirect()->action('HomeController@showtoken', ['token' => $token]);
 
+
+        //
         return view('github', [
-            'user' => $app_user[0],
-            'nickname' => $github_user->nickname,
+            'app_user' => $app_user[0],
+            'contribution' => $contribution
+          'nickname' => $github_user->nickname,
             'token' => $token,
             'repos' => array_map(function($o) {
                 return $o->name;
             }, json_decode($res->getBody()))
         ]);
     }
+
+    public function logout(){
+      Auth::logout();
+      $contribution = Contributions::all();
+      return view('home', ["contribution" => $contribution]);
+    }
+
+    public function profileIndex(){
+
+        $github_user = Socialite::driver('github')->user();
+
+        $app_user = DB::select('select * from public.userdatas where github_id = ?', [$github_user->user['login']]);
+
+      return view('profile', ["username" => $app_user[0]]);
+}
 
     public function createIssue(Request $request)
     {

@@ -12,8 +12,19 @@
 */
 
 
-Route::get('/posting','PostingController@index');
-Route::post('/posting', 'PostingController@upload');
+Route::get('posting','PostingController@index');
+Route::post('posting', 'PostingController@upload');
+Route::get('home', 'HomeController@index');
+//Route::post('home', 'HomeController@delete');
+ // Route::post('user', 'User\UserController@updateUser');
+ Route::get('welcome', 'User\UserController@index');
+Route::get('logout', 'LoginController@logout');
+Route::get('profile', 'ProfileController@index');
+
+
+
+
+
 
 
 
@@ -22,10 +33,10 @@ Route::post('/posting', 'PostingController@upload');
 // Route::post('/bbs', 'BbsController@create');
 
 Route::get('github', 'Github\GithubController@top');
-Route::post('github/issue', 'Github\GithubController@createIssue');
+//Route::post('github/issue', 'Github\GithubController@createIssue');
 Route::get('login/github', 'Auth\LoginController@redirectToProvider');
 Route::get('login/github/callback', 'Auth\LoginController@handleProviderCallback');
 
-// Route::post('user', 'User\UserController@updateUser');
+
 // Route::get('/', 'HomeController@index');
 // Route::post('/upload', 'HomeController@upload');

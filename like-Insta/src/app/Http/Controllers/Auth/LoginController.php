@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Socialite;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\HomeController;
 
 class LoginController extends Controller
 {
@@ -40,12 +41,13 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+
     /**
      * GitHubの認証ページヘユーザーをリダイレクト
      *
      * @return \Illuminate\Http\Response
      */
-    public function redirectToProvider()// 追加！
+    public function redirectToProvider()
     {
         return Socialite::driver('github')->scopes(['read:user', 'public_repo'])->redirect();
     }
@@ -60,12 +62,17 @@ class LoginController extends Controller
         $github_user = Socialite::driver('github')->user();
 
         $now = date("Y/m/d H:i:s");
-        $app_user = DB::select('select * from public.user where github_id = ?', [$github_user->user['login']]);
-        if (empty($app_user)) {
-            DB::insert('insert into public.user (github_id, created_at, updated_at) values (?, ?, ?)', [$github_user->user['login'], $now, $now]);
-        }
-        $request->session()->put('github_token', $github_user->token);
+        $app_user = DB::select('select * from public.userdatas where github_id = ?', [$github_user->user['login']]);
+        // $iconData = base64_encode(file_get_contents('https://github.com/' . $github_user->user['login'] . '.png'));
 
-        return redirect('github');
+        if (empty($app_user)) {
+            DB::insert('insert into public.userdatas (github_id,  created_at, updated_at) values (? ,  ?, ?)', [$github_user->user['login'], $now, $now]);
+        }
+        session()->flush();
+        $request->session()->put('github_token', $github_user->token);
+        $request->session()->put('github_id', $github_user->user['login']);
+      //  return  redirect()->action('HomeController@showtoken', ['token' => $github_user->token]);
+        return redirect('home');
+        //return redirect('github');
     }
 }

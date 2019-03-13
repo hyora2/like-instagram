@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateContributionTable extends Migration
+class CreateLikesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateContributionTable extends Migration
      */
     public function up()
     {
-        Schema::create('contributions', function (Blueprint $table) {
-            $table->bigIncrements('post_id');
-            $table->string('user_id');
-            $table->text('image');  //画像バイナリデータ
-            $table->string('caption');
+        Schema::create('likes', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->integer('post_id');
+            $table->integer('like_user_id');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateContributionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contributions');
+        Schema::dropIfExists('Likes');
     }
 }

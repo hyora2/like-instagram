@@ -7,16 +7,8 @@
         <title>github</title>
     </head>
     <body>
-        <form action="/user" method="post">
-            {{ csrf_field() }}
 
-            <div>お名前 : <input type="text" name="name" value="{{$user->name}}"></div>
-
-            <div>コメント : <input type="text" name="comment" value="{{$user->comment}}"></div>
-
-
-            <input type="submit" value="Confirm">
-        </form>
+      
         <div>ようこそ{{ $nickname }}さん</div>
         <div>あなたのトークンは{{ $token }}です</div>
         <div>リポジトリ一覧</div>
