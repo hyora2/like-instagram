@@ -18,7 +18,7 @@ Route::get('home', 'HomeController@index');
 //Route::post('home', 'HomeController@delete');
  // Route::post('user', 'User\UserController@updateUser');
  Route::get('welcome', 'User\UserController@index');
-Route::get('logout', 'LoginController@logout');
+Route::get('logout', 'Auth\LoginController@logout');
 Route::get('profile', 'ProfileController@index');
 
 

@@ -41,6 +41,14 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    public function logout(){
+      if( empty( session()->has('github_id')) ) {
+        return redirect('welcome');
+      }
+
+      session()->flush();
+      return redirect('home');
+    }
 
     /**
      * GitHubの認証ページヘユーザーをリダイレクト

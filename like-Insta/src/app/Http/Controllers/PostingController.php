@@ -6,6 +6,10 @@ use App\Model\Contributions;
 class PostingController extends Controller{
 
   public function index(){
+    if( empty( session()->has('github_id')) ) {
+      return redirect('welcome');
+    }
+
     return view('posting');
   }
 
@@ -19,7 +23,7 @@ class PostingController extends Controller{
                   'image',
                   'mimes:png,jpeg,gif',
                 ],
-                  'user_id' => 'required|max:10',
+
                 'caption' => 'required|max:200',
             ]);
 
@@ -28,7 +32,6 @@ class PostingController extends Controller{
             if($request->file('image')->isValid([])){
               //$path = $request->file->store('public');
               $imageData = base64_encode(file_get_contents($request->image->getRealPath()));
-
               Contributions::insert(["user_id" => $userId,"image" => $imageData, "caption" => $caption]);
           //    $contribution = Contributions::all();
           //return view('home',["contribution" => $contribution]);

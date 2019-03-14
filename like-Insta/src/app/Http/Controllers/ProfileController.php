@@ -5,6 +5,7 @@ use App\Model\userdatas;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Socialite;
 use Illuminate\Support\Facades\DB;
+use Log;
 
 /**
  *
@@ -13,9 +14,9 @@ class ProfileController extends Controller
 {
   public function index(){
 
-    if((session()->has('github_id')) == null){
-      redirect('welcome');
-    }
+   if( empty( session()->has('github_id')) ) {
+     return redirect('welcome');
+   }
 
     $token = session('github_token');
     $username = session('github_id');

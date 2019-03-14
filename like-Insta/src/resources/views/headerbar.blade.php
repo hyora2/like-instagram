@@ -17,8 +17,8 @@
 
                               <a href="welcome">login</a>
                             </li>
-                            <!-- <li><a href="logout">logout</a>
-                            </li> -->
+                            <li><a href="logout">logout</a>
+                            </li>
                             <li>
                               <a href="posting">投稿</a>
                             </li>

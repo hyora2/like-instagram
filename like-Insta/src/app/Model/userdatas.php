@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class userdatas extends Model
 {
     //
-     protected $fillable = ['github_id','iconimg'];
+     protected $fillable = ['user_id','github_id','iconimg'];
 }
