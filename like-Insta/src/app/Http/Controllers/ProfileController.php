@@ -1,28 +1,38 @@
 <?php
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use App\Model\userdatas;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Socialite;
-use Illuminate\Support\Facades\DB;
-use Log;
+use App\Model\Contributions;
+use App\Model\userdatas;
 
 /**
  *
  */
 class ProfileController extends Controller
 {
-  public function index(){
+  public function index($username=null){
+      if($username == null){
+        return redirect('/home');
+      }
 
-   if( empty( session()->has('github_id')) ) {
-     return redirect('welcome');
-   }
+      $iconData = base64_encode(file_get_contents('https://github.com/' . "$username" . '.png'));
+     $contributions = Contributions::GetOneuserContributions($username);
 
-    $token = session('github_token');
-    $username = session('github_id');
-      $iconData = base64_encode(file_get_contents('https://github.com/' . $username . '.png'));
-
-    return view('profile', ["token" => $token, "username" => $username, "iconData" => $iconData]);
+//DB::select('select * from public.userdatas where username = ?', [$github_user->user['login']])
+    return view('profile', [ "username" => $username, "iconData" => $iconData, "contributions" => $contributions]);
   }
+
+  public function mypageindex(){
+    if( empty( session()->has('username')) ) {
+      return redirect('/welcome');
+    }
+    //$app_user = session('app_user');
+    $username = session('username');
+    return redirect()->action('ProfileController@index', ["username" => $username]);
+
+  }
+
+
 
 }

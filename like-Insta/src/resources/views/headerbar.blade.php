@@ -10,21 +10,18 @@
             <nav id="mainNav" >
                     <div >
                         <ul >
-                            <li >
-                              <a href="home">ホーム</a>
-                            </li>
-                            <li>
 
-                              <a href="welcome">login</a>
-                            </li>
-                            <li><a href="logout">logout</a>
-                            </li>
-                            <li>
-                              <a href="posting">投稿</a>
-                            </li>
-                            <li>
-                              <a href="profile">マイページ</a>
-                            </li>
+                            <li >    <a href="/home">ホーム</a>        </li>
+                            <?php if( empty( session()->has('username')) ) {   ?>
+                              <li>  <a href="/welcome">login</a></li>
+                            <?php }else {   ?>
+                              <li><a href="/logout">logout</a> </li>
+                            <?php }   ?>
+
+                            <li>      <a href="/posting">投稿</a>    </li>
+
+                            <li>        <a href="/mypage">マイページ</a>    </li>
+
                         </ul>
                     </div>
                     <!-- /.navbar-collapse -->

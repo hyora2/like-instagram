@@ -2,15 +2,17 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Model\Contributions;
+use App\Model\userdatas;
+use Illuminate\Support\Facades\DB;
 
 class PostingController extends Controller{
 
   public function index(){
-    if( empty( session()->has('github_id')) ) {
+    if( empty( session()->has('username')) ) {
       return redirect('welcome');
     }
-
-    return view('posting');
+    $username = session('username');
+    return view('posting',["username" => $username]);
   }
 
   public function upload(Request $request){
@@ -26,16 +28,18 @@ class PostingController extends Controller{
 
                 'caption' => 'required|max:200',
             ]);
-
-            $userId = $request->input('user_id');
-            $caption = $request->input('caption');
             if($request->file('image')->isValid([])){
+              $now = date("Y/m/d H:i:s");
               //$path = $request->file->store('public');
+              $username = $request->input('username');
+              $caption = $request->input('caption');
               $imageData = base64_encode(file_get_contents($request->image->getRealPath()));
-              Contributions::insert(["user_id" => $userId,"image" => $imageData, "caption" => $caption]);
+
+              DB::insert('insert into public.contributions (username, image, caption, created_at, updated_at) values (?, ?, ?, ?, ?) ', [ $username, $imageData,  $caption, $now, $now]);
+              //  DB::insert('insert into public.userdatas (username,  created_at, updated_at) values (?, ?, ?)', [$github_user->user['login'], $now, $now])
           //    $contribution = Contributions::all();
-          //return view('home',["contribution" => $contribution]);
-             return redirect('home');
+        //  return view('/home');
+             return redirect('/home');
 
             }else {
                return redirect()
@@ -44,6 +48,8 @@ class PostingController extends Controller{
                ->withErrors();
             }
   }
+
+
 }
 
 

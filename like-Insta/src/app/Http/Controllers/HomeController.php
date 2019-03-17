@@ -7,17 +7,20 @@ use Illuminate\Support\Facades\DB;
 class HomeController extends Controller{
 
   public function index(){
-    $contribution = Contributions::all();
-    
-    return view('home', ["contribution" => $contribution]);
+    $username = session('username');
+
+    $contributions = Contributions::GetAll();
+    return view('home', ["contributions" => $contributions, "myname" => $username]);
   }
 
-  public function showtoken(Request $request){
-  //  $token = $request->$token;
+  public function onePostdelete(Request $request){
 
-    $contribution = Contributions::all();
-
-    return view('home', ["contribution" => $contribution]);
+    $postId = $request->input('postId');
+    Contributions::DeleteContribution($postId);
+    // $cont = new Contributions();
+    // $cont->DeleteContribution($postId);
+     return redirect('/home');
   }
+
 
 }

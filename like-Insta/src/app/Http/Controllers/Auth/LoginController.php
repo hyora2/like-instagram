@@ -7,7 +7,8 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Socialite;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\HomeController;
+
+
 
 class LoginController extends Controller
 {
@@ -17,7 +18,7 @@ class LoginController extends Controller
     |--------------------------------------------------------------------------
     |
     | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
+    | redirecting them to your / screen. The controller uses a trait
     | to conveniently provide its functionality to your applications.
     |
     */
@@ -42,12 +43,12 @@ class LoginController extends Controller
     }
 
     public function logout(){
-      if( empty( session()->has('github_id')) ) {
-        return redirect('welcome');
+      if( empty( session()->has('username')) ) {
+        return redirect('/welcome');
       }
 
       session()->flush();
-      return redirect('home');
+      return redirect('/home');
     }
 
     /**
@@ -70,17 +71,18 @@ class LoginController extends Controller
         $github_user = Socialite::driver('github')->user();
 
         $now = date("Y/m/d H:i:s");
-        $app_user = DB::select('select * from public.userdatas where github_id = ?', [$github_user->user['login']]);
+        $app_user = DB::select('select * from public.userdatas where username = ?', [$github_user->user['login']]);
         // $iconData = base64_encode(file_get_contents('https://github.com/' . $github_user->user['login'] . '.png'));
-
         if (empty($app_user)) {
-            DB::insert('insert into public.userdatas (github_id,  created_at, updated_at) values (? ,  ?, ?)', [$github_user->user['login'], $now, $now]);
+            DB::insert('insert into public.userdatas (username,  created_at, updated_at) values (?, ?, ?)', [$github_user->user['login'], $now, $now]);
         }
         session()->flush();
+        session()->put('app_user', $app_user);
         $request->session()->put('github_token', $github_user->token);
-        $request->session()->put('github_id', $github_user->user['login']);
-      //  return  redirect()->action('HomeController@showtoken', ['token' => $github_user->token]);
-        return redirect('home');
+        //$request->session()->put('username', $github_user->user['login']);
+        session()->put('username', $github_user->user['login']);
+      //  return  redirect()->action('/Controller@showtoken', ['token' => $github_user->token]);
+        return redirect('/home');
         //return redirect('github');
     }
 }

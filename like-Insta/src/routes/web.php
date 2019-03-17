@@ -15,11 +15,13 @@
 Route::get('posting','PostingController@index');
 Route::post('posting', 'PostingController@upload');
 Route::get('home', 'HomeController@index');
-//Route::post('home', 'HomeController@delete');
+Route::post('home', 'HomeController@onePostdelete');
+
  // Route::post('user', 'User\UserController@updateUser');
  Route::get('welcome', 'User\UserController@index');
 Route::get('logout', 'Auth\LoginController@logout');
-Route::get('profile', 'ProfileController@index');
+Route::get('profile/{username?}', 'ProfileController@index');
+Route::get('mypage', 'ProfileController@mypageindex');
 
 
 

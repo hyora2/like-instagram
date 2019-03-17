@@ -44,11 +44,6 @@ class GithubController extends Controller
         ]);
     }
 
-    public function logout(){
-      Auth::logout();
-      $contribution = Contributions::all();
-      return view('home', ["contribution" => $contribution]);
-    }
 
     public function profileIndex(){
 

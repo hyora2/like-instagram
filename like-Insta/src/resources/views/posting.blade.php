@@ -23,11 +23,11 @@
 
 <!-- フォームエリア -->
 <h2>フォーム</h2>
-<form action="posting" method="post" enctype="multipart/form-data">
+<form action="posting" method="post" enctype="multipart/form-data" >
   <div class="form-parts">
-      名前:<br><input name="user_id">  <br>
+      名前:{{$username}}<br><input type="hidden" name="username" value= " {{$username}} " >  <br>
     <label for="photo">画像ファイル:</label>
-    <input type="file" accept="image/*" name="image"> <br>
+    <input type="file"  name="image"> <br>
     <br>
     コメント:<br>  <textarea name="caption" rows="4" cols="40"></textarea><br>
     {{ csrf_field() }}

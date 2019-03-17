@@ -15,7 +15,7 @@ class CreateContributionTable extends Migration
     {
         Schema::create('contributions', function (Blueprint $table) {
             $table->bigIncrements('post_id');
-            $table->string('user_id');
+            $table->string('username');
             $table->text('image');  //画像バイナリデータ
             $table->string('caption');
             $table->timestamps();
