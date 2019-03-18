@@ -30,8 +30,7 @@ class LikeController extends Controller
 
   public function likedindex($postId){
     $likedlists = Like::Getlikeduser($postId);
-  //    $iconData = base64_encode(file_get_contents('https://github.com/' . "$likedlists->like_username" . '.png'));
-
+  
     return view('/liked', ["likedlists" => $likedlists]);
   }
 

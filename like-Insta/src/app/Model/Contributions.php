@@ -16,7 +16,7 @@ class Contributions extends Model
      }
 
      public static function GetOneuserContributions($username){
-       $userContributions = DB::table('contributions')->where('username', $username)->get();
+       $userContributions = DB::table('contributions')->where('username', $username)->orderBy('created_at', 'desc')->get();
        return $userContributions;
      }
 

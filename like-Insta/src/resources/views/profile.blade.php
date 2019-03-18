@@ -15,7 +15,7 @@
 @foreach ($contributions as $c)
 
 
-    <br><img src="data:image/png;base64, {{ $c->image }}" alt=""><br>
+    <img src="data:image/png;base64, {{ $c->image }}" alt="">
 
 
 @endforeach

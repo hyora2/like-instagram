@@ -16,6 +16,9 @@
     @isset($contributions)
     @foreach ($contributions as $c)
 
+<div class="">
+
+
         <h4><a href="profile/{{$c->username}}">  {{ $c->username }}</a>さんの投稿</h4>
         @if($c->username == $myname)
         <form class="" action="home" method="post">
@@ -26,7 +29,7 @@
         @endif
 
         <br><img src="data:image/png;base64, {{ $c->image }}" alt=""><br>
-        <h3>キャプション</h3><br>
+        <h4>キャプション</h4><br>
         {{ $c->caption }}
         <br><hr>
         <a href="liked/{{$c->post_id}}">いいねしたユーザー</a>
@@ -47,6 +50,8 @@
 
         @endif
 
+
+</div>
     @endforeach
     @endisset
     <br>

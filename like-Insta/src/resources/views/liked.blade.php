@@ -11,9 +11,11 @@
 
 @isset($likedlists)
 @foreach ($likedlists as $l)
-    <a href="/profile/{{$l->like_username}}"> <h4> {{ $l->like_username }}</h4>
 
-  </a><br>
+    <a href="/profile/{{$l->like_username}}">
+      <img src="https://github.com/{{$l->like_username}}.png" width="50" height="50">
+      {{ $l->like_username }}<br>
+    </a>
 
 @endforeach
 @endisset
