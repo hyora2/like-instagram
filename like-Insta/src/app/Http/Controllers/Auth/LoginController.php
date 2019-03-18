@@ -79,7 +79,7 @@ class LoginController extends Controller
         session()->flush();
         session()->put('app_user', $app_user);
         $request->session()->put('github_token', $github_user->token);
-        //$request->session()->put('username', $github_user->user['login']);
+
         session()->put('username', $github_user->user['login']);
       //  return  redirect()->action('/Controller@showtoken', ['token' => $github_user->token]);
         return redirect('/home');

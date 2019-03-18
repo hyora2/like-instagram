@@ -2,12 +2,12 @@
 <html lang="en" dir="ltr">
   <head>
     @include('head', ['title' => 'Home'])
+
+
   </head>
   <body>
 
 @include('headerbar')
-
-
 
     <h2>画像掲示板</h2>
 
@@ -29,9 +29,28 @@
         <h3>キャプション</h3><br>
         {{ $c->caption }}
         <br><hr>
+        <a href="liked/{{$c->post_id}}">いいねしたユーザー</a>
+
+        @if(session()->has('username'))
+
+        <form class="" action="like" method="post">
+          <button type="submit" name="post_id" value="{{$c->post_id}}">
+            いいね
+            @foreach($mylikeid as $likeid)
+            @if($c->post_id == $likeid->post_id)
+              解除
+            @endif
+            @endforeach
+          </button>
+            {{ csrf_field() }}
+        </form>
+
+        @endif
+
     @endforeach
     @endisset
-  <div class="d-flex justify-content-center">
+    <br>
+  <div class="">
     {{ $contributions->links() }}
 </div>
 

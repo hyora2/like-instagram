@@ -5,6 +5,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Socialite;
 use App\Model\Contributions;
 use App\Model\userdatas;
+use App\Model\Like;
 
 /**
  *
@@ -18,9 +19,10 @@ class ProfileController extends Controller
 
       $iconData = base64_encode(file_get_contents('https://github.com/' . "$username" . '.png'));
      $contributions = Contributions::GetOneuserContributions($username);
+     $AmountOfLike = Like::GetAmountoflike($username);
 
 //DB::select('select * from public.userdatas where username = ?', [$github_user->user['login']])
-    return view('profile', [ "username" => $username, "iconData" => $iconData, "contributions" => $contributions]);
+    return view('profile', [ "username" => $username, "iconData" => $iconData, "contributions" => $contributions, "AmountOfLike" => $AmountOfLike]);
   }
 
   public function mypageindex(){

@@ -20,10 +20,18 @@ class Contributions extends Model
        return $userContributions;
      }
 
+     public static function GetUsernamefromPostid($postId){
+       $postusername = DB::table('contributions')->where('post_id', $postId)->value('username');
+       return $postusername;
+     }
+
      public static function DeleteContribution($postId){
        DB::table('contributions')->where('post_id', $postId)->delete();
 
      }
+
+
+
 
 
 }
