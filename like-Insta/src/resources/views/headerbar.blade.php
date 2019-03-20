@@ -4,17 +4,18 @@
     <meta charset="utf-8">
     <title></title>
 
-    <!-- <link href="css/app.css" rel="stylesheet" type="text/css"> -->
+
+     <link href="css/headerbar.css" rel="stylesheet" type="text/css">
   </head>
   <body>
-    <header>
+    <header >
+                        <ul class="Navbar">
+                            <li > <a href="/home">ホーム </a> </li>
 
-            <nav id="mainNav" >
-
-                        <ul >
-                            <li >    <a href="/home">ホーム</a>        </li>
                             <?php if( empty( session()->has('username')) ) {   ?>
+
                               <li>  <a href="/welcome">login</a></li>
+
                             <?php }else {   ?>
                               <li><a href="/logout">logout</a> </li>
                             <?php }   ?>
@@ -22,7 +23,6 @@
                             <li>        <a href="/mypage">マイページ</a>    </li>
 
                         </ul>
-            </nav>
     </header>
 
 

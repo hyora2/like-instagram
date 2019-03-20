@@ -1,0 +1,39 @@
+*{
+  margin: 0px;
+  padding: 0px;
+
+}
+
+header {
+  display: flex;
+
+}
+
+ul.Navbar {
+  background: #ccc;
+  display: flex;
+  padding: 30px;
+  position: fixed;
+  justify-content: space-between;
+  width: 100%;
+}
+
+ul.Navbar li {
+    padding: 10px 15px;
+    margin: -30px;
+    display:flex;
+    vertical-align:baseline;
+    background-color:black;
+    width: 22%;
+    font-size: 16pt;
+}
+
+
+ul.Navbar li:first-child {
+    border:none;
+}
+ul.Navbar li a{
+    text-decoration:none;
+    color:white;
+
+}
