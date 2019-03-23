@@ -4,36 +4,26 @@
 
 }
 
-header {
-  display: flex;
-
-}
-
-ul.Navbar {
-  background: #ccc;
-  display: flex;
-  padding: 30px;
+header#navber {
+  z-index: 10px;
+  background-color: #222;
   position: fixed;
-  justify-content: space-between;
   width: 100%;
+  max-height: 60px;
+
 }
 
-ul.Navbar li {
-    padding: 10px 15px;
-    margin: -30px;
-    display:flex;
-    vertical-align:baseline;
-    background-color:black;
-    width: 22%;
-    font-size: 16pt;
+header#navber ul{
+  list-style: none;
 }
 
+header#navber ul li{
+  display: inline-block;
+  padding:   2em;
 
-ul.Navbar li:first-child {
-    border:none;
 }
-ul.Navbar li a{
-    text-decoration:none;
-    color:white;
+
+#navber a{
+  color: #fff;
 
 }

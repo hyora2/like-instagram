@@ -2,10 +2,14 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <link href="/css/maincontens.css" rel="stylesheet" type="text/css">
     <title>like_list</title>
   </head>
   <body>
 @include('headerbar')
+
+<div class="maincontents">
+
 
 <h3>いいねしたユーザー</h3>
 
@@ -20,6 +24,6 @@
 @endforeach
 @endisset
 
-
+</div>
   </body>
 </html>

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class userdatas extends Model
 {
     //
-     protected $fillable = ['username','iconimg'];
+     protected $fillable = ['username'];
 
-          
+
 }

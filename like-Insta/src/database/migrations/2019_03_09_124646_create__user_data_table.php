@@ -16,7 +16,7 @@ class CreateUserDataTable extends Migration
         Schema::create('userdatas', function (Blueprint $table) {
             $table->bigIncrements('user_id');
             $table->string('username');
-            $table->text('iconimg')->nullable();
+            // $table->text('iconimg')->nullable();
             $table->timestamps();
         });
     }

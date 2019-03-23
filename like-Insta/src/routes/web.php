@@ -14,6 +14,7 @@
 
 Route::get('posting','PostingController@index');
 Route::post('posting', 'PostingController@upload');
+Route::get('/', 'HomeController@index');
 Route::get('home', 'HomeController@index');
 Route::post('home', 'HomeController@onePostdelete');
 
