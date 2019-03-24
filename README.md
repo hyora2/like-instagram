@@ -9,7 +9,7 @@
 ログイン後、投稿ページから投稿することができます。  
 投稿時、画像は60MB以下、キャプションは200文字以下で投稿できます。  
 
-heroku url: https://like-insta.herokuapp.com  
+heroku url: http://like-insta.herokuapp.com  
 コードのGitHub url:https://github.com/hyora2/like-instagram  
 
 ----------
