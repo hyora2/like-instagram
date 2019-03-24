@@ -37,7 +37,9 @@
         </div>
 
         <h4>キャプション</h4><br>
+
         {{ $c->caption }}
+        
         <hr>
         <div class="liked">
         <a href="liked/{{$c->post_id}}">いいねしたユーザー</a>
