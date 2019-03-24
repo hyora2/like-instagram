@@ -10,6 +10,7 @@
 投稿時、画像は60MB以下、キャプションは200文字以下で投稿できます。  
 
 heroku url: http://like-insta.herokuapp.com  
+マイグレーションファイル: databese/migrations　
 
 ----------
 
